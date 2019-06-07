@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CollectionViewApp"
+             xmlns:viewModels="clr-namespace:CollectionViewApp.ViewModels;assembly=CollectionViewApp"
+             x:Class="CollectionViewApp.Views.MainPage"
+             Padding="20"
+             Title="CollectionView">
+
+    <ContentPage.BindingContext>
+        <viewModels:MainViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+        <CollectionView ItemsSource="{Binding Contacts}" Margin="0,10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5" ColumnSpacing="30">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="{Binding Avatar}" WidthRequest="64" HeightRequest="64"/>
+                        <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Vertical" Spacing="5" VerticalOptions="Center">
+                            <Label Text="{Binding Fullname}"/>
+                            <Label Text="{Binding PhoneNumber}" FontAttributes="Italic" TextColor="Silver" FontSize="13"/>
+                        </StackLayout>
+                        <ImageButton Grid.Column="2" Grid.Row="0" Source="baseline_phone_black_24.png" WidthRequest="24" HeightRequest="24" BackgroundColor="Transparent" Command="{Binding CallCommand}" CommandParameter="{Binding .}"/>
+                        <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" BackgroundColor="Silver"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

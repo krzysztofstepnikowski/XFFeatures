@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="RefitApp.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:RefitApp.Converters;assembly=RefitApp"
+    xmlns:customControls="clr-namespace:RefitApp.CustomControls;assembly=RefitApp"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:RefitApp.ViewModels;assembly=RefitApp"
+    mc:Ignorable="d">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolToNotBoolConverter x:Key="BoolToNotBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModels:MainViewModel />
+    </ContentPage.BindingContext>
+
+
+    <StackLayout Orientation="Vertical">
+        <Button
+            Margin="20"
+            BackgroundColor="DodgerBlue"
+            BorderColor="DodgerBlue"
+            Command="{Binding GetDataCmd}"
+            CornerRadius="5"
+            Text="Get Data"
+            TextColor="White"
+            VerticalOptions="Start" />
+        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+            <ActivityIndicator
+                HeightRequest="40"
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                Color="Black" />
+            <Label
+                HorizontalOptions="Center"
+                IsVisible="{Binding IsDataDownloaded, Converter={StaticResource BoolToNotBoolConverter}}"
+                Text="No data."
+                TextColor="Silver" />
+            <ListView
+                x:Name="UsersFeedList"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsBusy}"
+                IsVisible="{Binding IsDataDownloaded}"
+                ItemsSource="{Binding Users}"
+                RefreshCommand="{Binding GetDataCmd}"
+                VerticalOptions="Center">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    FontSize="Medium"
+                                    Text="{Binding Title}"
+                                    TextColor="Black" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <StackLayout
+            x:Name="Collapse"
+            IsVisible="{Binding IsExpand}"
+            Orientation="Vertical">
+            <customControls:ShadowedFrame
+                Margin="20,0,20,-30"
+                Padding="20"
+                VerticalOptions="CenterAndExpand">
+                <StackLayout Spacing="10" VerticalOptions="CenterAndExpand">
+                    <Entry
+                        Placeholder="Title"
+                        PlaceholderColor="Silver"
+                        Text="{Binding Title}" />
+                    <Button
+                        BackgroundColor="DodgerBlue"
+                        BorderColor="DodgerBlue"
+                        Command="{Binding AddTitleCmd}"
+                        CornerRadius="5"
+                        IsEnabled="{Binding IsAddTitleButtonEnabled}"
+                        Text="Add Title"
+                        TextColor="White" />
+                </StackLayout>
+            </customControls:ShadowedFrame>
+        </StackLayout>
+        <Button
+            x:Name="AddButton"
+            Margin="20"
+            BackgroundColor="Red"
+            BorderColor="Red"
+            Command="{Binding AddCmd}"
+            CommandParameter="{x:Reference Collapse}"
+            CornerRadius="5"
+            Text="Add"
+            TextColor="White"
+            VerticalOptions="Start" />
+    </StackLayout>
+</ContentPage>
