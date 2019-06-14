@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Shell
+    x:Class="ShellApp.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:ShellApp.Views"
+    Shell.FlyoutHeaderTemplate="{StaticResource FlyoutHeaderTemplate}"
+    Shell.ItemTemplate="{StaticResource MenuTemplate}"
+    Shell.MenuItemTemplate="{StaticResource MenuTemplate}"
+    mc:Ignorable="d">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ThemeColor">#EF3D55</Color>
+            <Color x:Key="GrayColor">Gray</Color>
+            <Color x:Key="BgColor">#F0F0F0</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource BgColor}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource ThemeColor}" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource GrayColor}" />
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource ThemeColor}" />
+            </Style>
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="FlyoutItem" />
+            <DataTemplate x:Key="MenuTemplate">
+                <StackLayout Orientation="Horizontal">
+                    <Image
+                        Margin="30,10,20,10"
+                        HeightRequest="22"
+                        HorizontalOptions="Start"
+                        Source="{Binding Icon}"
+                        VerticalOptions="Center"
+                        WidthRequest="22" />
+                    <Label
+                        FontSize="16"
+                        Text="{Binding Title}"
+                        TextColor="#686868"
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </DataTemplate>
+            <DataTemplate x:Key="FlyoutHeaderTemplate">
+                <ContentView BackgroundColor="{StaticResource ThemeColor}" HeightRequest="245">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="96"
+                        HorizontalOptions="Center"
+                        Source="Logo.png"
+                        VerticalOptions="Center"
+                        WidthRequest="96" />
+                </ContentView>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <FlyoutItem Title="Home" Icon="home.png">
+        <Tab Title="Dashboard" Icon="dashboard.png">
+            <ShellContent ContentTemplate="{DataTemplate views:DashboardPage}" />
+        </Tab>
+        <Tab Title="Favorites" Icon="heart.png">
+            <ShellContent ContentTemplate="{DataTemplate views:FavoritesPage}" />
+        </Tab>
+        <Tab Title="Profile" Icon="profile.png">
+            <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" />
+        </Tab>
+        <Tab Title="More" Icon="more.png">
+            <ShellContent ContentTemplate="{DataTemplate views:MorePage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <MenuItem IconImageSource="photo.png" Text="Photos" />
+    <MenuItem IconImageSource="article.png" Text="Articles" />
+    <MenuItem IconImageSource="briefcase.png" Text="Projects" />
+    <MenuItem IconImageSource="settings.png" Text="Settings" />
+</Shell>
