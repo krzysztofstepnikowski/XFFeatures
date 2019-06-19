@@ -10,7 +10,16 @@
     Shell.FlyoutHeaderTemplate="{StaticResource FlyoutHeaderTemplate}"
     Shell.ItemTemplate="{StaticResource MenuTemplate}"
     Shell.MenuItemTemplate="{StaticResource MenuTemplate}"
+    Shell.FlyoutBackgroundColor="Purple"
     mc:Ignorable="d">
+
+    <Shell.TitleView>
+        <Label
+            HorizontalOptions="Start"
+            Text="Shell App"
+            TextColor="White"
+            VerticalOptions="Center" />
+    </Shell.TitleView>
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -55,22 +64,35 @@
     </Shell.Resources>
 
     <FlyoutItem Title="Home" Icon="home.png">
-        <Tab Title="Dashboard" Icon="dashboard.png">
-            <ShellContent ContentTemplate="{DataTemplate views:DashboardPage}" />
-        </Tab>
-        <Tab Title="Favorites" Icon="heart.png">
-            <ShellContent ContentTemplate="{DataTemplate views:FavoritesPage}" />
+        <Tab Title="Weather" Icon="dashboard.png">
+            <ShellContent ContentTemplate="{DataTemplate views:WeatherPage}" />
         </Tab>
         <Tab Title="Profile" Icon="profile.png">
             <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" />
         </Tab>
-        <Tab Title="More" Icon="more.png">
-            <ShellContent ContentTemplate="{DataTemplate views:MorePage}" />
+        <Tab Title="Message Box" Icon="more.png">
+            <ShellContent ContentTemplate="{DataTemplate views:MessageBoxPage}" />
         </Tab>
     </FlyoutItem>
 
-    <MenuItem IconImageSource="photo.png" Text="Photos" />
-    <MenuItem IconImageSource="article.png" Text="Articles" />
-    <MenuItem IconImageSource="briefcase.png" Text="Projects" />
-    <MenuItem IconImageSource="settings.png" Text="Settings" />
+    <MenuItem
+        Command="{Binding NavigateCommand}"
+        CommandParameter="photos"
+        IconImageSource="photo.png"
+        Text="Photos" />
+    <MenuItem
+        Command="{Binding NavigateCommand}"
+        CommandParameter="articles"
+        IconImageSource="article.png"
+        Text="Articles" />
+    <MenuItem
+        Command="{Binding NavigateCommand}"
+        CommandParameter="projects"
+        IconImageSource="briefcase.png"
+        Text="Projects" />
+    <MenuItem
+        Command="{Binding SettingsCommand}"
+        CommandParameter="settings"
+        IconImageSource="settings.png"
+        Text="Settings" />
 </Shell>

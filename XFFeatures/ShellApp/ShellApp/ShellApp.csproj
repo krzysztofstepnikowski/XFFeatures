@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\WeatherPage.xaml.cs">
+      <DependentUpon>WeatherPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\MessageBoxPage.xaml.cs">
       <DependentUpon>MessageBoxPage.xaml</DependentUpon>
     </Compile>
@@ -32,7 +35,7 @@
     <EmbeddedResource Update="Views\ArticlesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\DashboardPage.xaml">
+    <EmbeddedResource Update="Views\WeatherPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\FavoritesPage.xaml">
