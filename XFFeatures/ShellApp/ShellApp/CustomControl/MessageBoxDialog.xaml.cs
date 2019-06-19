@@ -1,21 +1,21 @@
 ﻿using System;
-using Xamarin.Forms;
+using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms.Xaml;
 
-namespace ShellApp.Views
+namespace ShellApp.CustomControl
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SettingsPage : ContentPage
+    public partial class MessageBoxDialog : PopupPage
     {
-        public SettingsPage()
+        public MessageBoxDialog()
         {
             InitializeComponent();
-            
         }
 
         private void Button_OnClicked(object sender, EventArgs e)
         {
-            Shell.Current.Navigation.PopAsync(true);
+            App.Current.MainPage.Navigation.PopPopupAsync(true);
         }
     }
 }

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<pages:PopupPage
+    x:Class="ShellApp.CustomControl.MessageBoxDialog"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    mc:Ignorable="d">
+
+    <Grid HeightRequest="265" VerticalOptions="End">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Frame
+            Grid.RowSpan="2"
+            Padding="20,0"
+            BackgroundColor="White"
+            CornerRadius="50"
+            HeightRequest="225"
+            VerticalOptions="End">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image
+                    Margin="0,20,0,0"
+                    Aspect="Fill"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    Source="heart.png"
+                    VerticalOptions="Start"
+                    WidthRequest="40" />
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Vertical"
+                    Spacing="10"
+                    VerticalOptions="Center">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalTextAlignment="Center"
+                        Text="Congratulations!"
+                        TextColor="#E10555" />
+                    <Label
+                        Margin="5,0"
+                        FontSize="15"
+                        HorizontalTextAlignment="Center"
+                        Text="You have just been named the best archer in Kings Landing and the queen has requested that you join her in a bouquet."
+                        TextColor="#363636"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+            </Grid>
+        </Frame>
+        <Button
+            Grid.Row="1"
+            BackgroundColor="#E10555"
+            Clicked="Button_OnClicked"
+            HeightRequest="45"
+            Text="Continue"
+            TextColor="White" />
+    </Grid>
+</pages:PopupPage>

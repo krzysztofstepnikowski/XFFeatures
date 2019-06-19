@@ -6,6 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Shell.NavBarIsVisible="False"
     mc:Ignorable="d">
 
     <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -20,14 +21,6 @@
                 HeightRequest="270"
                 Source="ProfilleImage.png"
                 VerticalOptions="StartAndExpand" />
-            <ImageButton
-                Margin="20,50"
-                Clicked="ImageButton_Clicked"
-                HeightRequest="15"
-                HorizontalOptions="Start"
-                Source="menu.png"
-                VerticalOptions="Start"
-                WidthRequest="23" />
             <Frame
                 Grid.Row="1"
                 Margin="20,-50,20,0"

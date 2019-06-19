@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ShellApp.Views
@@ -10,11 +9,6 @@ namespace ShellApp.Views
         public ProfilePage()
         {
             InitializeComponent();
-        }
-
-        private void ImageButton_Clicked(object sender, EventArgs e)
-        {
-            Shell.Current.FlyoutIsPresented = true;
         }
     }
 }
